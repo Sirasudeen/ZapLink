@@ -8,6 +8,12 @@ export const shortURL = async (req, res) => {
         if (!longUrl) {
             return res.status(400).json({ error: 'Long URL is required' });
         }
+        const result = await pool.query(
+            'SELECT * FROM urls WHERE original_url = $1', [longUrl]);
+        if (result.rows.length > 0) {
+            const existingShortCode = result.rows[0].short_code;
+            return res.status(200).json({ shortUrl: `${process.env.BASE_URL}/${existingShortCode}` });
+        }
         const shortURL = await generateShortURL(longUrl);
 
         res.status(200).json({ shortUrl: shortURL });
