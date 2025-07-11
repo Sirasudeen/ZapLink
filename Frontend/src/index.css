@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background: url(bg.jpg);
+  background: url(/bg.jpg);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -21,4 +21,20 @@ a,
 .nav-item {
   cursor: pointer;
   transition: color 0.3s ease;
+}
+
+@font-face {
+  font-family: 'Galgo Regular';
+  src: url('/fonts/Galgo-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Galgo Bold';
+  src: url('/fonts/Galgo-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }

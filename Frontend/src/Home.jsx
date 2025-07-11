@@ -115,9 +115,14 @@ const Home = () => {
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
+                    flexDirection: 'column',
                     padding: '50px 24px',
                 }}
             >
+                <Typography style={{ textAlign: 'center', fontFamily: "Galgo Bold", marginBottom: '0.3rem', fontSize: 'clamp(2rem,1rem + min(10vh,7vw),5.5rem)', color: 'white', fontWeight: 'bold', width: '90%' }}>
+                    Simplify your links, share them anywhere, and monitor their reach with ease.
+
+                </Typography>
                 <Row justify="center" align="middle" style={{ width: '100%' }}>
                     <Col
                         xs={24}
