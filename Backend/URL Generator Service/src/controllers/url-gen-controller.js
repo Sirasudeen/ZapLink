@@ -12,10 +12,10 @@ export const shortURL = async (req, res) => {
             'SELECT * FROM urls WHERE original_url = $1', [longUrl]);
         if (result.rows.length > 0) {
             const existingShortCode = result.rows[0].short_code;
-            return res.status(200).json({ shortUrl: `${process.env.BASE_URL}/${existingShortCode}` });
+            return res.status(200).json({ shortUrl: `${process.env.URL_REDIRECTOR_SERVICE}/api/${existingShortCode}` });
         }
         const shortURL = await generateShortURL(longUrl);
-
+        console.log('Short URL generated:', shortURL);
         res.status(200).json({ shortUrl: shortURL });
 
     }
@@ -29,13 +29,13 @@ export const shortURL = async (req, res) => {
 const generateShortURL = async (longUrl) => {
     try {
         const counter = await redis.incr('zaplink:counter');
-
+        console.log(counter);
         const shortCode = encodeBase62(counter);
 
         await pool.query(
             'INSERT INTO urls(short_code,original_url) VALUES ($1,$2)', [shortCode, longUrl]
         );
-        return { shortURL: `${process.env.BASE_URL}/${shortCode}` };
+        return { shortURL: `${process.env.URL_REDIRECTOR_SERVICE}/api/${shortCode}` };
     }
     catch (error) {
         console.error('Error generating short URL:', error);

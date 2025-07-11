@@ -2,17 +2,18 @@ import express from 'express';
 import { shortURL } from './controllers/url-gen-controller.js';
 import { connectToDatabase, pool } from './lib/db.js';
 import redis from "../src/lib/redis.js";
+import cors from 'cors';
+
 const app = express();
 const port = 3000;
 app.use(express.json());
-
+app.use(cors({
+    origin: '*',
+}));
 const router = express.Router();
-redis.set("siras", "katchu");
-const value = await redis.get("siras");
-console.log("Siras:", value);
 
 router.post('/shorten', shortURL);
-app.use('/api', router); // then your endpoint is POST /api/shorten
+app.use('/api', router);
 
 app.listen(port, () => {
     connectToDatabase();
