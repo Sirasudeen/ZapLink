@@ -16,7 +16,7 @@ const Home = () => {
         setError('');
         setShortUrl('');
         try {
-            const res = await fetch(`${import.meta.env.VITE_URL_GEN_SERVICE}/api/shorten`, {
+            const res = await fetch(`${import.meta.env.VITE_URL_GEN_SERVICE}/shorten`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ longUrl }),

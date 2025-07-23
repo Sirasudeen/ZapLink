@@ -1,5 +1,5 @@
 import { pool } from '../Lib/db.js';
-import { redis } from '../Lib/redis.js';
+import  redis  from '../Lib/redis.js';
 function normalizeUrl(inputUrl) {
     if (!/^https?:\/\//i.test(inputUrl)) {
         return 'https://' + inputUrl;
