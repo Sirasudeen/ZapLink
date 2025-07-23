@@ -38,7 +38,7 @@ const ShortUrlCard = ({ shortUrl }) => {
             </Text>
             <br />
             <a
-                href={shortUrl}
+                href={`https://${shortUrl}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
