@@ -15,3 +15,6 @@ COPY . .
 
 # Set the Lambda handler (file.function)
 CMD [ "lambda.handler" ]
+
+
+
