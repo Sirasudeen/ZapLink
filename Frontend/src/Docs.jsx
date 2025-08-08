@@ -90,7 +90,6 @@ const Docs = () => {
       </Header>
 
 
-      {/* Main Content */}
       <Content className="mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
         <div className="mb-12 text-center px-2 sm:px-0">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -101,7 +100,6 @@ const Docs = () => {
           </p>
         </div>
 
-        {/* Introduction Card */}
         <motion.div
           className="mb-8 rounded-2xl border border-gray-100 bg-white dark:bg-zinc-900 p-6 sm:p-8 shadow-lg"
           initial={{ opacity: 0, y: 20 }}
@@ -116,7 +114,6 @@ const Docs = () => {
           </p>
         </motion.div>
 
-        {/* How It Works Card */}
         <motion.div
           className="mb-8 rounded-2xl border border-gray-100 bg-white dark:bg-zinc-900 p-6 sm:p-8 shadow-lg"
           initial={{ opacity: 0, y: 20 }}
@@ -131,7 +128,6 @@ const Docs = () => {
           </p>
         </motion.div>
 
-        {/* API Endpoints Card */}
         <motion.div
           className="rounded-2xl border border-gray-100 bg-white dark:bg-zinc-900 p-6 sm:p-8 shadow-lg"
           initial={{ opacity: 0, y: 20 }}
@@ -171,7 +167,7 @@ const Docs = () => {
               <pre className="mt-2 overflow-x-auto rounded-lg bg-gray-900 p-4 text-sm text-white">
                 <code>
                   {`{
-  "shortUrl": "http://zap.link/abc123"
+  "shortUrl": "https://zap.siras.dev/abc123"
 }`}
                 </code>
               </pre>

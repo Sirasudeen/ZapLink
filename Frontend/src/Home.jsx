@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 import UrlForm from './components/UrlForm';
 import ShortUrlCard from './components/ShortUrlCard';
-import { Layout, Typography, Card, Row, Col, message, Space } from 'antd';
-const { Title, Text } = Typography;
+import { Layout, Typography, message, Space } from 'antd';
 import { Link } from 'react-router-dom';
-const { Header, Content, Footer } = Layout;
-import { TextAnimate } from './components/magicui/text-animate'
+import { TextAnimate } from './components/magicui/text-animate';
 import { motion } from 'framer-motion';
+import { RocketOutlined, CloseOutlined } from '@ant-design/icons'; // Import icons
+
+const { Title } = Typography;
+const { Header, Content } = Layout;
 
 const Home = () => {
   const [shortUrl, setShortUrl] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [isAlertVisible, setIsAlertVisible] = useState(true); // State for the banner
 
   const handleShorten = async (longUrl, resetInput) => {
     setLoading(true);
@@ -47,8 +50,19 @@ const Home = () => {
         fontFamily: "'Inter', sans-serif"
       }}
     >
-
-
+      {isAlertVisible && (
+        <div className="relative bg-cyan-900 text-white text-center p-2 text-sm font-medium flex justify-center items-center rounded-lg mt-1 mx-1 shadow-lg">
+          <RocketOutlined className="mr-2" />
+          <span>Analytics feature is coming soon! Stay tuned.</span>
+          <button
+            onClick={() => setIsAlertVisible(false)}
+            className="absolute right-4 text-white hover:text-gray-200 transition-colors"
+            aria-label="Close notification"
+          >
+            <CloseOutlined />
+          </button>
+        </div>
+      )}
       <Header
         style={{
           background: 'transparent',
@@ -171,8 +185,6 @@ const Home = () => {
         </motion.div>
 
       </Content>
-
-
     </Layout>
   );
 };
