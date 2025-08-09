@@ -33,7 +33,7 @@ const MainLayout = () => {
             )}
             <AppHeader />
             <Content>
-                <Outlet /> {/* Your page components (Home, Docs, About) will render here */}
+                <Outlet />
             </Content>
         </Layout>
     );

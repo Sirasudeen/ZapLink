@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import UrlForm from './components/UrlForm';
-import ShortUrlCard from './components/ShortUrlCard';
+import UrlForm from '../components/UrlForm';
+import ShortUrlCard from '../components/ShortUrlCard';
 import { message } from 'antd';
-import { TextAnimate } from './components/magicui/text-animate';
+import { TextAnimate } from '../components/magicui/text-animate';
 import { motion } from 'framer-motion';
-import { useAuth } from './Auth/AuthContext';
+import { useAuth } from '../Auth/AuthContext';
 const Home = () => {
   const [shortUrl, setShortUrl] = useState('');
   const [loading, setLoading] = useState(false);
