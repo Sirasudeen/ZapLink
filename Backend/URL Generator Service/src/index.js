@@ -15,8 +15,8 @@ const router = express.Router();
 router.post('/shorten', shortURL);
 app.use('/api', router);
 connectToDatabase();
-// app.listen(port,() => {
-//     console.log("Server on ",port);
-//     connectToDatabase();
-// })
+app.listen(port, () => {
+    console.log("Server on ", port);
+    connectToDatabase();
+})
 export default app;

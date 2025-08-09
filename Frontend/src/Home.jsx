@@ -1,30 +1,27 @@
 import React, { useState } from 'react';
 import UrlForm from './components/UrlForm';
 import ShortUrlCard from './components/ShortUrlCard';
-import { Layout, Typography, message, Space } from 'antd';
-import { Link } from 'react-router-dom';
+import { message } from 'antd';
 import { TextAnimate } from './components/magicui/text-animate';
 import { motion } from 'framer-motion';
-import { RocketOutlined, CloseOutlined } from '@ant-design/icons'; // Import icons
-
-const { Title } = Typography;
-const { Header, Content } = Layout;
-
+import { useAuth } from './Auth/AuthContext';
 const Home = () => {
   const [shortUrl, setShortUrl] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [isAlertVisible, setIsAlertVisible] = useState(true); // State for the banner
-
+  const { user } = useAuth();
+  console.log(user?.id);
+  // console.log(session);
   const handleShorten = async (longUrl, resetInput) => {
     setLoading(true);
     setError('');
+    const userId = user?.id;
     setShortUrl('');
     try {
       const res = await fetch(`${import.meta.env.VITE_URL_GEN_SERVICE}/api/shorten`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ longUrl }),
+        body: JSON.stringify({ longUrl, userId }),
       });
       const data = await res.json();
       if (res.ok && data.shortUrl) {
@@ -43,91 +40,11 @@ const Home = () => {
   };
 
   return (
-    <Layout
-      style={{
-        minHeight: '100vh',
-        background: 'transparent',
-        fontFamily: "'Inter', sans-serif"
-      }}
-    >
-      {isAlertVisible && (
-        <div className="relative bg-cyan-900 text-white text-center p-2 text-sm font-medium flex justify-center items-center rounded-lg mt-1 mx-1 shadow-lg">
-          <RocketOutlined className="mr-2" />
-          <span>Analytics feature is coming soon! Stay tuned.</span>
-          <button
-            onClick={() => setIsAlertVisible(false)}
-            className="absolute right-4 text-white hover:text-gray-200 transition-colors"
-            aria-label="Close notification"
-          >
-            <CloseOutlined />
-          </button>
-        </div>
-      )}
-      <Header
+    <>
+
+
+      <div
         style={{
-          background: 'transparent',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          padding: '0 32px',
-          height: 72,
-          zIndex: 10,
-        }}
-      >
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <Link to="/" style={{ textDecoration: 'none' }}>
-            <Title
-              level={4}
-              style={{
-                margin: 0,
-                color: '#333',
-                letterSpacing: 0.5,
-                fontWeight: 700,
-                fontSize: '1.8rem',
-                fontFamily: "'Poppins', sans-serif",
-              }}
-            >
-              ZapLink
-            </Title>
-          </Link>
-        </div>
-
-        <Space size="large">
-          <Link
-            to="/docs"
-            style={{
-              color: '#555',
-              fontWeight: 500,
-              textDecoration: 'none',
-              fontSize: '1rem',
-              transition: 'color 0.3s ease',
-            }}
-            onMouseEnter={(e) => (e.target.style.color = '#3b28cc')}
-            onMouseLeave={(e) => (e.target.style.color = '#555')}
-          >
-            Docs
-          </Link>
-
-          <Link
-            to="/about"
-            style={{
-              color: '#555',
-              fontWeight: 500,
-              textDecoration: 'none',
-              fontSize: '1rem',
-              transition: 'color 0.3s ease',
-            }}
-            onMouseEnter={(e) => (e.target.style.color = '#3b28cc')}
-            onMouseLeave={(e) => (e.target.style.color = '#555')}
-          >
-            About
-          </Link>
-        </Space>
-      </Header>
-
-      <Content
-        style={{
-          minHeight: '75vh',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -153,8 +70,6 @@ const Home = () => {
           </TextAnimate>
         </div>
 
-
-
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -162,8 +77,8 @@ const Home = () => {
           className="w-full px-4 py-8 md:py-12"
         >
           <div className="mx-auto w-full max-w-xl">
-            <div className="rounded-3xl border border-gray-200 bg-white  shadow-xl dark:border-gray-700 dark:bg-zinc-900 p-6 sm:p-8 md:p-10">
-              <h2 className="text-center text-2xl md:text-3xl font-extrabold font-  text-gray-700 dark:text-white font-poppins mb-6">
+            <div className="rounded-3xl border border-gray-200 bg-white shadow-xl dark:border-gray-700 dark:bg-zinc-900 p-6 sm:p-8 md:p-10">
+              <h2 className="text-center text-2xl md:text-3xl font-extrabold text-gray-700 dark:text-white font-poppins mb-6">
                 Zap your Link ⚡
               </h2>
 
@@ -183,9 +98,8 @@ const Home = () => {
             </div>
           </div>
         </motion.div>
-
-      </Content>
-    </Layout>
+      </div>
+    </>
   );
 };
 

@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Layout, Typography, Card, Row, Col, message, Space } from 'antd';
 const { Title, Text } = Typography;
-
 const { Header, Content, Footer } = Layout;
 
 const About = () => {
@@ -16,67 +15,7 @@ const About = () => {
                 fontFamily: "'Inter', sans-serif"
             }}
         >
-            <Header
-                style={{
-                    background: 'transparent',
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    padding: '0 32px',
-                    height: 72,
-                    zIndex: 10,
-                }}
-            >
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <Link to="/" style={{ textDecoration: 'none' }}>
-                        <Title
-                            level={4}
-                            style={{
-                                margin: 0,
-                                color: '#333',
-                                letterSpacing: 0.5,
-                                fontWeight: 700,
-                                fontSize: '1.8rem',
-                                fontFamily: "'Poppins', sans-serif",
-                            }}
-                        >
-                            ZapLink
-                        </Title>
-                    </Link>
-                </div>
 
-                <Space size="large">
-                    <Link
-                        to="/docs"
-                        style={{
-                            color: '#555',
-                            fontWeight: 500,
-                            textDecoration: 'none',
-                            fontSize: '1rem',
-                            transition: 'color 0.3s ease',
-                        }}
-                        onMouseEnter={(e) => (e.target.style.color = '#3b28cc')}
-                        onMouseLeave={(e) => (e.target.style.color = '#555')}
-                    >
-                        Docs
-                    </Link>
-
-                    <Link
-                        to="/about"
-                        style={{
-                            color: '#555',
-                            fontWeight: 500,
-                            textDecoration: 'none',
-                            fontSize: '1rem',
-                            transition: 'color 0.3s ease',
-                        }}
-                        onMouseEnter={(e) => (e.target.style.color = '#3b28cc')}
-                        onMouseLeave={(e) => (e.target.style.color = '#555')}
-                    >
-                        About
-                    </Link>
-                </Space>
-            </Header>
             <main className="mx-auto max-w-4xl px-6 py-16">
                 <section className="text-center mb-12">
                     <h1 className="text-4xl md:text-5xl font-extrabold text-zinc-800 dark:text-white">

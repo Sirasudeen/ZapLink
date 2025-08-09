@@ -1,5 +1,5 @@
 import { pool } from '../Lib/db.js';
-import  redis  from '../Lib/redis.js';
+import redis from '../Lib/redis.js';
 function normalizeUrl(inputUrl) {
     if (!/^https?:\/\//i.test(inputUrl)) {
         return 'https://' + inputUrl;
@@ -13,6 +13,7 @@ export const redirectToURL = async (req, res) => {
         if (!shortCode) {
             return res.status(400).json({ error: 'Short code is required' });
         }
+        await redis.incr(`analytics:clicks:${shortCode}`);
         const cacheValue = await redis.get('zaplink:' + shortCode);
         if (cacheValue) {
             console.log('Cache hit for short code:', shortCode);
