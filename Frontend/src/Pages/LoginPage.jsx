@@ -3,7 +3,6 @@ import { supabase } from '../Auth/SupabaseClient';
 import { Link, useNavigate } from 'react-router-dom';
 import { Card, Form, Input, Button, message, Typography } from 'antd';
 import { motion } from 'framer-motion';
-import { MailOutlined, LockOutlined } from '@ant-design/icons';
 
 const { Title, Text } = Typography;
 
@@ -31,41 +30,43 @@ const Login = () => {
     };
 
     return (
-        <div className="flex justify-center items-center min-h-screen bg-transparent px-4">
+        <div className="flex justify-center items-center min-h-screen bg-transparent px-4 sm:px-6 md:px-8">
             <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: 'easeOut' }}
-                className="w-full max-w-md"
+                className="w-full max-w-xs sm:max-w-sm md:max-w-md"
             >
                 <Card
-                    className="shadow-2xl rounded-3xl"
+                    className="shadow-xl hover:shadow-2xl transition-shadow duration-300 rounded-3xl p-5 sm:p-7 md:p-9 lg:p-12"
                     style={{
                         backdropFilter: 'blur(10px)',
-                        background: 'rgba(255, 255, 255, 0.9)',
+                        background: 'rgba(255, 255, 255, 0.95)',
                         border: 'none',
-                        padding: '2rem',
-                        width: '100%',
                     }}
                 >
-                    <div className="text-center mb-6">
+                    <div className="text-center mb-8">
                         <Title
                             level={2}
-                            style={{
-                                margin: 0,
-                                fontWeight: 700,
-                                fontFamily: "'Poppins', sans-serif",
-                                color: '#333',
-                            }}
+                            className="!m-0 font-extrabold font-poppins text-lg sm:text-xl md:text-2xl text-gray-800"
                         >
                             Welcome Back!
                         </Title>
-                        <Text type="secondary" style={{ fontSize: '1rem' }}>
+                        <Text
+                            type="secondary"
+                            className="block mt-2 text-sm sm:text-base font-medium"
+                        >
                             Please log in to continue
                         </Text>
                     </div>
 
-                    <Form name="login" onFinish={onFinish} layout="vertical" requiredMark="optional">
+                    <Form
+                        name="login"
+                        onFinish={onFinish}
+                        layout="vertical"
+                        requiredMark="optional"
+                        className="space-y-4"
+                    >
                         <Form.Item
                             name="email"
                             rules={[{ required: true, type: 'email', message: 'Please input a valid email!' }]}
@@ -73,10 +74,7 @@ const Login = () => {
                             <Input
                                 placeholder="Email"
                                 size="large"
-                                style={{
-                                    borderRadius: '10px',
-                                    border: '1px solid #d9d9d9',
-                                }}
+                                className="rounded-xl border border-gray-300 text-sm sm:text-base font-medium focus:border-blue-400 focus:shadow-md transition-all duration-200"
                             />
                         </Form.Item>
 
@@ -87,37 +85,31 @@ const Login = () => {
                             <Input.Password
                                 placeholder="Password"
                                 size="large"
-                                style={{
-                                    borderRadius: '10px',
-                                    border: '1px solid #d9d9d9',
-                                }}
+                                className="rounded-xl border border-gray-300 text-sm sm:text-base font-medium focus:border-blue-400 focus:shadow-md transition-all duration-200"
                             />
                         </Form.Item>
 
                         <Form.Item>
-                            <Button
-                                type="primary"
-                                htmlType="submit"
-                                loading={loading}
-                                className="w-full"
-                                size="large"
-                                style={{
-                                    borderRadius: '10px',
-                                    background: 'linear-gradient(90deg, #34D399, #3B82F6)',
-                                    fontWeight: '600',
-                                    color: '#fff',
-                                }}
-                                onMouseEnter={(e) => (e.target.style.opacity = 0.9)}
-                                onMouseLeave={(e) => (e.target.style.opacity = 1)}
-                            >
-                                Log In
-                            </Button>
+                            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                                <Button
+                                    type="primary"
+                                    htmlType="submit"
+                                    loading={loading}
+                                    className="w-full rounded-xl font-bold text-sm sm:text-base py-2 sm:py-3 shadow-md hover:shadow-lg transition-all duration-300"
+                                    style={{
+                                        background: 'linear-gradient(90deg, #34D399, #3B82F6)',
+                                        color: '#fff',
+                                    }}
+                                >
+                                    Log In
+                                </Button>
+                            </motion.div>
                         </Form.Item>
                     </Form>
 
-                    <Text className="block text-center mt-4" style={{ fontSize: '0.95rem' }}>
+                    <Text className="block text-center mt-5 text-xs sm:text-sm md:text-base font-medium">
                         Don't have an account?{' '}
-                        <Link to="/signup" style={{ color: '#333', fontWeight: '600' }}>
+                        <Link to="/signup" className="text-gray-800 font-semibold hover:underline transition-colors duration-200">
                             Sign Up
                         </Link>
                     </Text>

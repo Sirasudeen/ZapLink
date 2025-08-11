@@ -9,8 +9,7 @@ const Home = () => {
   const [shortUrl, setShortUrl] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const { user } = useAuth();
-  console.log(user?.id);
+  const { session } = useAuth();
   // console.log(session);
   const handleShorten = async (longUrl, resetInput) => {
     setLoading(true);
@@ -18,10 +17,20 @@ const Home = () => {
     const userId = user?.id;
     setShortUrl('');
     try {
+      const token = session ? session.access_token : null;
+
+      const headers = {
+        'Content-Type': 'application/json',
+      };
+
+      if (token) {
+        headers['Authorization'] = `Bearer ${token}`;
+      }
+
       const res = await fetch(`${import.meta.env.VITE_URL_GEN_SERVICE}/api/shorten`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ longUrl, userId }),
+        headers: headers,
+        body: JSON.stringify({ longUrl }),
       });
       const data = await res.json();
       if (res.ok && data.shortUrl) {
