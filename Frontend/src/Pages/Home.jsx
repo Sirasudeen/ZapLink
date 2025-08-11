@@ -14,7 +14,6 @@ const Home = () => {
   const handleShorten = async (longUrl, resetInput) => {
     setLoading(true);
     setError('');
-    const userId = user?.id;
     setShortUrl('');
     try {
       const token = session ? session.access_token : null;
